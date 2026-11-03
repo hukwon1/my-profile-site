@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hukwon | Developer</title>
+  <meta name="description" content="개발자 hukwon의 프로필 웹사이트" />
+
+  <!-- 다크 모드 초기화 (깜빡임 방지) -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Pretendard', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-white text-slate-800 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-200">
+
+  <!-- ===== Navbar ===== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <a href="#home" class="text-xl font-extrabold tracking-tight">
+        <span class="gradient-text">hukwon</span>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <ul class="hidden items-center gap-1 md:flex">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- 다크 모드 토글 -->
+        <button id="theme-toggle" type="button" aria-label="다크 모드 전환"
+          class="rounded-full p-2 text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">
+          <!-- moon -->
+          <svg class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <!-- sun -->
+          <svg class="hidden h-5 w-5 dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        </button>
+
+        <!-- 모바일 메뉴 버튼 -->
+        <button id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"
+          class="rounded-full p-2 text-slate-600 transition hover:bg-slate-100 md:hidden dark:text-slate-300 dark:hover:bg-slate-800">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 모바일 메뉴 -->
+    <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white/95 backdrop-blur md:hidden dark:border-slate-800 dark:bg-slate-950/95">
+      <ul class="flex flex-col px-4 py-2">
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#skills" class="mobile-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-link">Projects</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section id="home" class="relative flex min-h-screen items-center overflow-hidden px-4 pt-20 sm:px-6">
+      <!-- 배경 장식 -->
+      <div class="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-600/20"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-violet-400/20 blur-3xl dark:bg-violet-600/20"></div>
+
+      <div class="relative mx-auto flex w-full max-w-6xl flex-col-reverse items-center gap-12 md:flex-row md:justify-between">
+        <div class="reveal text-center md:text-left">
+          <p class="mb-4 inline-block rounded-full bg-indigo-50 px-4 py-1.5 text-sm font-medium text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-300">
+            👋 Welcome to my profile
+          </p>
+          <h1 class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            안녕하세요,<br />
+            개발자 <span class="gradient-text">hukwon</span>입니다.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-slate-600 dark:text-slate-400">
+            깔끔한 코드와 좋은 사용자 경험을 만드는 웹 개발자입니다.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+            <a href="#projects" class="btn-primary">프로젝트 보기</a>
+            <a href="#contact" class="btn-secondary">연락하기</a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="avatar flex h-48 w-48 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-7xl font-extrabold text-white shadow-2xl shadow-indigo-500/30 sm:h-64 sm:w-64 sm:text-8xl">
+            H
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="px-4 py-24 sm:px-6">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <p class="section-eyebrow">About Me</p>
+        <h2 class="section-title">저를 소개합니다</h2>
+        <p class="mt-8 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          사용자 경험을 중시하며, 깔끔하고 유지보수하기 쉬운 코드를 작성하는 웹 개발자입니다.
+          HTML, CSS, JavaScript를 기반으로 직관적인 인터페이스를 만드는 것을 좋아합니다.
+          새로운 기술을 배우고 실제 프로젝트에 적용하는 과정을 즐깁니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section id="skills" class="bg-slate-50 px-4 py-24 sm:px-6 dark:bg-slate-900/50">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal text-center">
+          <p class="section-eyebrow">Skills</p>
+          <h2 class="section-title">기술 스택</h2>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+          <!-- HTML -->
+          <div class="reveal card">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400">
+              <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m8 9-3 3 3 3m8-6 3 3-3 3M14 5l-4 14"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">HTML</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-400">시맨틱 마크업과 웹 접근성을 고려한 구조적인 문서 작성</p>
+          </div>
+
+          <!-- CSS -->
+          <div class="reveal card">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-100 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400">
+              <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zm0 4h16M9 20V9"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">CSS</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-400">Flexbox, Grid, Tailwind CSS를 활용한 반응형 레이아웃과 스타일링</p>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="reveal card">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-100 text-yellow-600 dark:bg-yellow-500/10 dark:text-yellow-400">
+              <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold">JavaScript</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-400">DOM 조작, 비동기 처리, 이벤트 기반의 동적인 웹 인터랙션 구현</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects" class="px-4 py-24 sm:px-6">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal text-center">
+          <p class="section-eyebrow">Portfolio</p>
+          <h2 class="section-title">프로젝트</h2>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Project 1 -->
+          <article class="reveal card group overflow-hidden p-0">
+            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-indigo-500 to-violet-500 text-5xl transition duration-300 group-hover:scale-105">👤</div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold">프로필 웹사이트</h3>
+              <p class="mt-2 text-slate-600 dark:text-slate-400">다크 모드와 반응형 디자인을 지원하는 개인 프로필 사이트</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML</span><span class="tag">Tailwind</span><span class="tag">JS</span>
+              </div>
+              <div class="mt-5 flex gap-4 text-sm font-semibold">
+                <a href="#" class="project-link">GitHub →</a>
+                <a href="#" class="project-link">Demo →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="reveal card group overflow-hidden p-0">
+            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-emerald-400 to-teal-500 text-5xl transition duration-300 group-hover:scale-105">✅</div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold">To-Do 앱</h3>
+              <p class="mt-2 text-slate-600 dark:text-slate-400">로컬 스토리지에 저장되는 할 일 관리 애플리케이션</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <div class="mt-5 flex gap-4 text-sm font-semibold">
+                <a href="#" class="project-link">GitHub →</a>
+                <a href="#" class="project-link">Demo →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="reveal card group overflow-hidden p-0">
+            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-sky-400 to-blue-500 text-5xl transition duration-300 group-hover:scale-105">🌤️</div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold">날씨 대시보드</h3>
+              <p class="mt-2 text-slate-600 dark:text-slate-400">공개 날씨 API를 활용한 실시간 날씨 정보 대시보드</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Fetch API</span>
+              </div>
+              <div class="mt-5 flex gap-4 text-sm font-semibold">
+                <a href="#" class="project-link">GitHub →</a>
+                <a href="#" class="project-link">Demo →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="bg-slate-50 px-4 py-24 sm:px-6 dark:bg-slate-900/50">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="section-eyebrow">Contact</p>
+        <h2 class="section-title">함께 이야기해요</h2>
+        <p class="mt-6 text-lg text-slate-600 dark:text-slate-400">
+          협업 제안이나 궁금한 점이 있다면 언제든 편하게 연락 주세요.
+        </p>
+
+        <div class="mt-10 inline-flex flex-col items-center gap-4 sm:flex-row">
+          <a href="mailto:hidden@example.com" class="btn-primary">
+            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+            hidden@example.com
+          </a>
+          <button id="copy-email" type="button" data-email="hidden@example.com" class="btn-secondary">
+            이메일 복사
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="border-t border-slate-200 px-4 py-8 text-center text-sm text-slate-500 dark:border-slate-800 dark:text-slate-500">
+    © <span id="year">2026</span> hukwon. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

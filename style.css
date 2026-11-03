@@ -1,0 +1,157 @@
+/* Tailwind CDN은 외부 CSS의 @apply를 처리하지 않으므로, 재사용 컴포넌트는 일반 CSS로 정의 */
+
+:root {
+  --accent-from: #6366f1; /* indigo-500 */
+  --accent-to: #8b5cf6;   /* violet-500 */
+}
+
+html {
+  scroll-padding-top: 72px; /* 고정 navbar 높이만큼 앵커 위치 보정 */
+}
+
+/* ===== 그라디언트 텍스트 ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Navbar ===== */
+#navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
+}
+.dark #navbar.scrolled {
+  background-color: rgba(2, 6, 23, 0.8);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: #475569;
+  transition: color 0.2s, background-color 0.2s;
+}
+.nav-link:hover { color: #0f172a; background-color: #f1f5f9; }
+.nav-link.active { color: var(--accent-from); }
+.dark .nav-link { color: #cbd5e1; }
+.dark .nav-link:hover { color: #fff; background-color: #1e293b; }
+.dark .nav-link.active { color: #a5b4fc; }
+
+.mobile-link {
+  display: block;
+  padding: 0.85rem 0.5rem;
+  font-weight: 500;
+  border-bottom: 1px solid #f1f5f9;
+}
+.mobile-link.active { color: var(--accent-from); }
+.dark .mobile-link { border-color: #1e293b; }
+.dark .mobile-link.active { color: #a5b4fc; }
+li:last-child > .mobile-link { border-bottom: 0; }
+
+/* ===== 섹션 제목 ===== */
+.section-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-from);
+}
+.dark .section-eyebrow { color: #a5b4fc; }
+
+.section-title {
+  margin-top: 0.5rem;
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ===== 버튼 ===== */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s;
+}
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+  box-shadow: 0 10px 25px -10px rgba(99, 102, 241, 0.6);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(99, 102, 241, 0.7);
+}
+.btn-secondary {
+  color: #334155;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+}
+.btn-secondary:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+.dark .btn-secondary { color: #e2e8f0; background-color: #0f172a; border-color: #334155; }
+.dark .btn-secondary:hover { border-color: #475569; }
+
+/* ===== 카드 ===== */
+.card {
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.15);
+}
+.dark .card { background-color: #0f172a; border-color: #1e293b; }
+.dark .card:hover { border-color: #334155; box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5); }
+.card.p-0 { padding: 0; }
+
+.tag {
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4f46e5;
+  background-color: #eef2ff;
+}
+.dark .tag { color: #a5b4fc; background-color: rgba(99, 102, 241, 0.12); }
+
+.project-link { color: var(--accent-from); transition: opacity 0.2s; }
+.project-link:hover { opacity: 0.7; }
+.dark .project-link { color: #a5b4fc; }
+
+/* ===== 아바타 ===== */
+.avatar { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ===== 스크롤 등장 애니메이션 ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .avatar { animation: none; }
+}

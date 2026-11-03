@@ -64,23 +64,5 @@ const sectionObserver = new IntersectionObserver(
 );
 document.querySelectorAll('main section[id]').forEach((s) => sectionObserver.observe(s));
 
-// ===== 이메일 복사 =====
-const copyBtn = document.getElementById('copy-email');
-const copyLabel = copyBtn.textContent.trim();
-let copyTimer;
-copyBtn.addEventListener('click', async () => {
-  const email = copyBtn.dataset.email;
-  clearTimeout(copyTimer);
-  try {
-    await navigator.clipboard.writeText(email);
-    copyBtn.textContent = '복사됨! ✓';
-  } catch (e) {
-    copyBtn.textContent = email; // 클립보드 사용 불가 시 주소를 보여줌
-  }
-  copyTimer = setTimeout(() => {
-    copyBtn.textContent = copyLabel;
-  }, 2000);
-});
-
 // ===== 푸터 연도 =====
 document.getElementById('year').textContent = new Date().getFullYear();
